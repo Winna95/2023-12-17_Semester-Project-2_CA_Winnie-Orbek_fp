@@ -4,7 +4,8 @@
   "description": "Website for auctions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,23 @@
   "bugs": {
     "url": "https://github.com/Winna95/2023-12-17_Semester-Project-2_CA_Winnie-Orbek_fp/issues"
   },
-  "homepage": "https://github.com/Winna95/2023-12-17_Semester-Project-2_CA_Winnie-Orbek_fp#readme"
+  "homepage": "https://github.com/Winna95/2023-12-17_Semester-Project-2_CA_Winnie-Orbek_fp#readme",
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0"
+  },
+  "lint-staged": {
+    "*.md": "prettier --write",
+    "src/js/**/*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "prettier --write"
+    ]
+  }
 }
