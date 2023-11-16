@@ -1,0 +1,52 @@
+@import './_variables.scss';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Imbue:opsz,wght@10..100,400;10..100,500;10..100,600;10..100,700&family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&display=swap');
+
+body {
+  font-family: 'Roboto Serif', serif;
+}
+.onlineAuctionHeader {
+  font-family: 'Anton', sans-serif;
+  color: $primary;
+  font-size: 30px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+.imbueText {
+  font-family: 'Imbue', serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+.grey {
+  color: $grey-color;
+}
+
+@media (min-width: 576px) {
+  .onlineAuctionHeader {
+    font-size: 50px;
+    .imbueText {
+      font-size: 30px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .onlineAuctionHeader {
+      font-size: 60px;
+    }
+    .imbueText {
+      font-size: 35px;
+    }
+  }
+  @media (min-width: 992px) {
+    .onlineAuctionHeader {
+      font-size: 60px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .onlineAuctionHeader {
+      font-size: 70px;
+    }
+  }
+}
