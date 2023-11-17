@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Log in page</title>
+    <title>Register page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,18 @@
           <div
             class="col-10 col-md-8 col-lg-6 g-3 mx-auto px-4 py-5 mt-n2 mb-5 border border-2 border-secondary rounded-2"
           >
-            <h2 class="text-center imbueText">LogIn</h2>
+            <h2 class="text-center imbueText">Register user</h2>
+            <label class="form-label mb-2 fw-normal ms-4">Name</label>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control bg-white w-75 ms-4"
+                id="nameInput"
+                value=""
+                placeholder="Enter your name"
+                required
+              />
+            </div>
             <label class="form-label mb-2 fw-normal ms-4">Email</label>
             <div class="mb-3">
               <input
@@ -41,7 +52,7 @@
                 class="form-control bg-white w-75 ms-4"
                 id="emailInput"
                 value=""
-                placeholder="Enter your email address"
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -56,15 +67,28 @@
                 required
               />
             </div>
+            <label class="form-label fw-normal ms-4 mb-2 mt-3"
+              >Avatar Url</label
+            >
+            <div class="mb-3">
+              <input
+                type="url"
+                class="form-control bg-white w-75 ms-4"
+                id="avatarUrlInput"
+                value=""
+                placeholder="Enter your avatar Url"
+                required
+              />
+            </div>
             <button
               class="btn btn-primary col-8 col-sm-4 text-white fw-bold my-2 ms-4"
               type="submit"
             >
-              Log In
+              Register user
             </button>
             <div class="ms-4">
-              <p class="grey mb-1">Don't have a user?</p>
-              <a href="../register/register.html" class="grey">Register here</a>
+              <p class="grey mb-1">Already have a user?</p>
+              <a href="../login/login.html" class="grey">Log In here</a>
             </div>
           </div>
         </form>
