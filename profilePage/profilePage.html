@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Auction Page</title>
+    <title>Profile Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
                     <a
                       class="nav-link text-white nav-link-imbue"
                       aria-current="page"
-                      href=""
+                      href="/profilePage"
                       >Profile</a
                     >
                   </li>
@@ -65,10 +65,7 @@
             <div class="row">
               <div class="col">
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    aria-current="page"
-                    href="/loggedInUserAuctionPage/auctionPageLoggedInUser.html"
+                  <a class="nav-link" aria-current="page" href="/index.html"
                     >Listings</a
                   >
                 </li>
@@ -96,59 +93,32 @@
     </header>
     <main>
       <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h2 class="justify-content-start mt-3">All Auctions:</h2>
-          </div>
+        <div class="row" id="detailsAboutUserPlaceholder"></div>
+        <div>
+          <button class="btn text-decoration-underline fw-bold">
+            <h2>My Listings</h2>
+          </button>
+          |
+          <button class="btn fw-bold"><h2>My Bids</h2></button>
         </div>
-        <form class="d-flex justify-content-end">
-          <div class="mb-3 rounded-2 ps-2 bg-light">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-              />
-            </svg>
-            <input
-              id="tagInput"
-              type="text"
-              class="border-0 rounded-1 p-1 ps-2 bg-light"
-              placeholder="Search for tag..."
-            />
-          </div>
-        </form>
-        <form class="w-100">
-          <div class="mb-3 rounded-2 bg-light ps-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-search"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-              />
-            </svg>
-            <input
-              id="searchInput"
-              type="text"
-              class="border-0 rounded-1 py-1 ps-2 bg-light"
-              placeholder="Search for products..."
-            />
-          </div>
-        </form>
-        <div class="row" id="postsPlaceholder"></div>
+        <div>
+          <button class="btn text-decoration-underline fw-bold">All</button>
+          |
+          <button class="btn fw-bold">Active listings</button>
+          |
+          <button class="btn fw-bold">Ended listings</button>
+        </div>
+        <div class="d-none">
+          <button class="btn text-decoration-underline fw-bold">All</button>
+          |
+          <button class="btn fw-bold">Active bids</button>
+          |
+          <button class="btn fw-bold">Ended bids</button>
+        </div>
+        <div class="row" id="productsPlaceholder"></div>
       </div>
     </main>
-    <footer class="bg-secondary">
+    <footer class="bg-secondary mt-3">
       <div class="container py-3">
         <div class="row">
           <div class="col-md-4">

@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg">
           <div class="container-fluid d-flex justify-content-end">
             <ul class="navbar-nav">
-              <div class="row">
+              <div class="row" id="notLoggedInMenuItems">
                 <div class="col">
                   <li class="nav-item">
                     <a
@@ -47,6 +47,27 @@
                       class="nav-link text-white nav-link-imbue"
                       href="../login/login.html"
                       >LogIn</a
+                    >
+                  </li>
+                </div>
+              </div>
+              <div class="row d-none" id="loggedInMenuItems">
+                <div class="col">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link text-white nav-link-imbue"
+                      aria-current="page"
+                      href=""
+                      >Profile</a
+                    >
+                  </li>
+                </div>
+                <div class="col">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link text-white nav-link-imbue"
+                      href="../login/login.html"
+                      >LogOut</a
                     >
                   </li>
                 </div>
