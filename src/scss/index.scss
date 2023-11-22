@@ -1,0 +1,105 @@
+@import './_variables.scss';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Imbue:opsz,wght@10..100,400;10..100,500;10..100,600;10..100,700&family=Roboto+Serif:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&display=swap');
+
+body {
+  font-family: 'Roboto Serif', serif;
+}
+
+.onlineAuctionHeader {
+  font-family: 'Anton', sans-serif;
+  color: $primary;
+  font-size: 30px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+.imbueText {
+  font-family: 'Imbue', serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+.grey {
+  color: $grey-color;
+}
+.line {
+  border-bottom: 1px solid black;
+  margin-top: 5px;
+  width: 90%;
+  max-width: 1500px;
+}
+.nav-link-imbue {
+  font-family: 'Imbue', serif;
+  font-weight: bold;
+}
+.nav-link {
+  color: black;
+  font-weight: normal;
+}
+.header-img {
+  width: 90%;
+  max-height: 415px;
+  max-width: 1500px;
+}
+
+h2 {
+  font-size: 20px;
+  max-width: 1500px;
+}
+h3 {
+  font-size: 16px;
+}
+.bi-search {
+  color: $grey-color;
+}
+.footer-icons {
+  background-color: $primary;
+  border-radius: 50%;
+  padding: 8px;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+}
+.black-link {
+  color: #212529;
+}
+.overlay {
+  position: fixed;
+  display: block;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 2;
+}
+@media (min-width: 576px) {
+  .onlineAuctionHeader {
+    font-size: 50px;
+    .imbueText {
+      font-size: 30px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .onlineAuctionHeader {
+      font-size: 60px;
+    }
+    .imbueText {
+      font-size: 35px;
+    }
+  }
+  @media (min-width: 992px) {
+    .onlineAuctionHeader {
+      font-size: 60px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .onlineAuctionHeader {
+      font-size: 70px;
+    }
+  }
+}
