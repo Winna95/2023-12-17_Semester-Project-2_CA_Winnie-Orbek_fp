@@ -50,7 +50,7 @@ export async function updateEntryMedia(name, avatar) {
     const fetchOptions = {
         method: "PUT",
         headers: {Authorization: "Bearer " + jwt},
-        payload: JSON.stringify({avatar: avatar})
+        body: JSON.stringify({avatar: avatar})
     }
 
     const response = await fetch(url, fetchOptions);
