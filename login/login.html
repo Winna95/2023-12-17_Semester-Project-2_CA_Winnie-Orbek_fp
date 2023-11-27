@@ -23,18 +23,21 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/login/login.js"></script>
   </head>
   <body>
     <header></header>
     <main>
       <div class="container">
         <h1 class="onlineAuctionHeader text-center mt-3">Online Auction</h1>
-        <form class="row">
+        <form novalidate class="row needs-validation">
           <div
             class="col-10 col-md-8 col-lg-6 g-3 mx-auto px-4 py-5 mt-n2 mb-5 border border-2 border-secondary rounded-2"
           >
             <h2 class="text-center imbueText">LogIn</h2>
-            <label class="form-label mb-2 fw-normal ms-4">Email</label>
+            <label for="emailInput" class="form-label mb-2 fw-normal ms-4"
+              >Email</label
+            >
             <div class="mb-3">
               <input
                 type="email"
@@ -44,8 +47,14 @@
                 placeholder="Enter your email address"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Email is required</div>
             </div>
-            <label class="form-label fw-normal ms-4 mb-2 mt-3">Password</label>
+            <label
+              for="passwordInput"
+              class="form-label fw-normal ms-4 mb-2 mt-3"
+              >Password</label
+            >
             <div class="mb-3">
               <input
                 type="password"
@@ -54,7 +63,12 @@
                 value=""
                 placeholder="Enter your password"
                 required
+                minlength="8"
               />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">
+                A password of at least 8 characters is required
+              </div>
             </div>
             <button
               class="btn btn-primary col-8 col-sm-4 text-white fw-bold my-2 ms-4"
@@ -62,6 +76,9 @@
             >
               Log In
             </button>
+            <div id="loginError" class="d-none alert alert-danger" role="alert">
+              Invalid credentials
+            </div>
             <div class="ms-4">
               <p class="grey mb-1">Don't have a user?</p>
               <a href="../register/register.html" class="grey">Register here</a>
