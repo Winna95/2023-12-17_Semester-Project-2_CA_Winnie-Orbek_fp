@@ -23,6 +23,7 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/profilePage/profile.js"></script>
   </head>
   <body>
     <header>
@@ -98,6 +99,18 @@
     <main>
       <div class="container">
         <div class="row" id="detailsAboutUserPlaceholder"></div>
+        <div class="d-none mt-3 row" id="editProfilePictureDiv">
+          <input
+            type="text"
+            class="form-control bg-white col-12"
+            id="profilePicture"
+            value=""
+            placeholder="Enter your profile picture URL"
+          />
+          <button class="btn btn-primary mt-3 col-3" id="changeProfilePicture">
+            Change profile picture
+          </button>
+        </div>
         <div>
           <button class="btn text-decoration-underline fw-bold">
             <h2>My Listings</h2>
@@ -106,12 +119,20 @@
           <button class="btn fw-bold"><h2>My Bids</h2></button>
         </div>
         <div>
-          <button class="btn text-decoration-underline fw-bold">All</button>
+          <button
+            class="btn text-decoration-underline fw-bold"
+            id="allListings"
+          >
+            All
+          </button>
           |
-          <button class="btn fw-bold">Active listings</button>
+          <button class="btn fw-bold" id="activeListings">
+            Active listings
+          </button>
           |
-          <button class="btn fw-bold">Ended listings</button>
+          <button class="btn fw-bold" id="endedListings">Ended listings</button>
         </div>
+        <div id="placeholderProfileListings"></div>
         <div class="d-none">
           <button class="btn text-decoration-underline fw-bold">All</button>
           |

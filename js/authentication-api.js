@@ -27,7 +27,7 @@ export async function registerNewUser (name, email, password, avatarImgUrl) {
         password: password,
         avatar: avatarImgUrl
     };
-    const url = baseUrl + "/social/auth/register";
+    const url = baseUrl + "/auction/auth/register";
     const fetchOptions = {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
@@ -69,7 +69,7 @@ export async function logInUser (email, password) {
         email: email,
         password: password
     };
-    const url = baseUrl + "/social/auth/login";
+    const url = baseUrl + "/auction/auth/login";
     const fetchOptions = {
         method: "POST",
         headers: {'Content-Type': 'application/json'},

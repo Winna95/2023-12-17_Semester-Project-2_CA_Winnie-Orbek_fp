@@ -49,7 +49,10 @@ export async function updateEntryMedia(name, avatar) {
     const jwt = localStorage.getItem("jwt")
     const fetchOptions = {
         method: "PUT",
-        headers: {Authorization: "Bearer " + jwt},
+        headers: {
+            Authorization: "Bearer " + jwt,
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({avatar: avatar})
     }
 
@@ -58,6 +61,7 @@ export async function updateEntryMedia(name, avatar) {
     const data = await response.json();
 
     if(data.errors && data.errors.length > 0) {
+        console.log(data.errors);
         return false;
     }
     return true;
