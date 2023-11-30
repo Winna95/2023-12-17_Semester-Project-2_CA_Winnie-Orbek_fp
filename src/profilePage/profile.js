@@ -1,6 +1,7 @@
 import {getAllListingsByProfile, getProfileForName, updateEntryMedia} from "../js/profile-api.js";
 import {isAuthenticated} from "../js/authentication.js";
 import {deleteListing, getListingById} from "../js/listings-api.js";
+import {getSortedBids} from "../js/listingUtilities.js";
 
 if(!isAuthenticated()) {
     window.location = "/"
@@ -61,10 +62,13 @@ changeProfilePictureBtn.addEventListener("click", event => {
     })
 
 })
+
+
+
 function renderListings(listings) {
     const placeholderProfileListings = document.querySelector("#placeholderProfileListings");
     const listOfHtmlListings = listings.map(listingByUser => {
-        const sortedBids = listingByUser.bids.sort((bid1, bid2) => new Date(bid2.created) - new Date(bid1.created));
+        const sortedBids = getSortedBids(listingByUser);
         let currentBid = 0;
         if(sortedBids.length > 0) {
             currentBid = sortedBids[0].amount
