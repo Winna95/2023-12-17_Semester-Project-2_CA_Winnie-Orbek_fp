@@ -79,6 +79,11 @@ h3 {
   height: 50px;
   width: 50px;
 }
+
+.pink-background {
+  background-color: $pink;
+}
+
 @media (min-width: 576px) {
   .onlineAuctionHeader {
     font-size: 50px;

@@ -13,13 +13,13 @@ function loadAndRenderProfileInformation() {
     getProfileForName(nameOfUser, false).then(profile => {
         const placeholderUserDetails = document.querySelector("#detailsAboutUserPlaceholder");
         placeholderUserDetails.innerHTML = `
-        <div class="d-flex justify-content-start">
+        <div class="d-flex justify-content-start my-5">
          <div class="col-3">
              <div class="row">
                 <img
                 src="${profile.avatar}"
                 alt="profile picture"
-                class="img-fluid rounded-circle rounded feed-avatar-img object-fit-cover"
+                class="img-fluid rounded-circle rounded w-100 h-100 feed-avatar-img object-fit-cover"
                 />
              </div>
              <div class="row">
@@ -63,31 +63,38 @@ changeProfilePictureBtn.addEventListener("click", event => {
 })
 function renderListings(listings) {
     const placeholderProfileListings = document.querySelector("#placeholderProfileListings");
-    const listOfHtmlListings = listings.map(listingsByUserByUser => {
+    const listOfHtmlListings = listings.map(listingByUser => {
+        const sortedBids = listingByUser.bids.sort((bid1, bid2) => new Date(bid2.created) - new Date(bid1.created));
+        let currentBid = 0;
+        if(sortedBids.length > 0) {
+            currentBid = sortedBids[0].amount
+        }
         return ` <div
-            class="col-12 col-sm-6 mx-auto d-flex justify-content-center mb-5 grid gap-3"
+            class="col-12 col-md-4 mx-3"
           >
-          <a href="">
-            <div class="px-4 rounded-2">
+          <div class="row d-flex mb-5 mt-3">
+          <a href="" class="text-decoration-none link-dark">
+            <div class="rounded-2 shadow pink-background">
               <img
-                src="${postByUser.media}"
+                src="${listingByUser.media}"
                 alt="Listing Image"
-                class="img-fluid my-3 mx-auto rounded-2"
+                class="img-fluid mx-auto rounded-2"
               />
-              <h5 class="fw-bold">${postByUser.title}</h5>
-              <p>
-                ${postByUser.bids.amount}
+              <h5 class="fw-bold text-center mt-4">${listingByUser.title}</h5>
+              <p class="ps-4">
+                Current bid: ${currentBid}$
               </p>
-              <p>
-              ${postByUser.endsAt}
+              <p class="ps-4">
+              Deadline: ${new Date (listingByUser.endsAt).toLocaleDateString()}
               </p>
-            </div>
             <div class="d-flex justify-content-end">
-            <button id="editBtn" class="mt-2 me-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Edit</button>
-            <button id="deleteBtn" class="mt-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Delete</button>
+            <button id="editBtn" class="mt-2 me-2 btn px-3 fw-bold" data-postId="${listingByUser.id}">Edit</button>
+            <button id="deleteBtn" class="mt-2 btn px-3 fw-bold" data-postId="${listingByUser.id}">Delete</button>
             <div id="deletePostPlaceholder" class="d-none alert alert-danger">Could not delete post, please try again later</div>
             </div>
+            </div>
             </a>
+            </div>
           </div>
 `;
     });

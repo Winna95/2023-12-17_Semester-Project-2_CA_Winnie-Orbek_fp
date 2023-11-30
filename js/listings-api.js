@@ -62,7 +62,7 @@ export async function getListingById (id, includeSeller, includeBids) {
     return data;
 }
 
-export async function createListing (title, endDate, tags, description, pictureUrl) {
+export async function createListing (title, endDate, tags, description, pictureUrls) {
 
     const url = baseUrl + "/auction/listings";
     const jwt = localStorage.getItem("jwt")
@@ -76,10 +76,10 @@ export async function createListing (title, endDate, tags, description, pictureU
     if(description) {
         requestBody.description = description
     }
-    if (pictureUrl) {
-        requestBody.media = pictureUrl;
+    if (pictureUrls) {
+        requestBody.media = pictureUrls;
     }
-
+console.log(requestBody);
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -94,9 +94,10 @@ export async function createListing (title, endDate, tags, description, pictureU
     const data = await response.json();
 
     if(data.errors && data.errors.length > 0) {
-        return false;
+        console.log(data.errors)
+        return data.errors.map(error => error.message);
     }
-    return true;
+    return [];
 }
 
 export async function updateListing (id, title, description, tags, pictureUrl) {
