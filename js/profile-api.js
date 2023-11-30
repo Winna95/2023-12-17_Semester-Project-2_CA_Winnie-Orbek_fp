@@ -68,7 +68,7 @@ export async function updateEntryMedia(name, avatar) {
 }
 
 export async function getAllListingsByProfile (profileName) {
-    let url = baseUrl + `/auction/profiles/${profileName}/listings`;
+    let url = baseUrl + `/auction/profiles/${profileName}/listings?_bids=true`;
     const jwt = localStorage.getItem("jwt")
     const fetchOptions = {
         headers: {Authorization: "Bearer " + jwt}
