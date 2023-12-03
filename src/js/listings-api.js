@@ -1,18 +1,12 @@
 const baseUrl = 'https://api.noroff.dev/api/v1';
 
 export async function getAllListings(tag, active) {
-  let url = baseUrl + `/auction/listings`;
-  if (tag || active) {
-    url = url + `?`;
-  }
+  let url = baseUrl + `/auction/listings?_bids=true`;
   if (tag) {
-    url = url + `_tag=${tag}`;
+    url = url + `&_tag=${tag}`;
   }
   if (active) {
-    if (tag) {
-      url = url + `&`;
-    }
-    url = url + `_active=true`;
+    url = url + `&_active=true`;
   }
   const jwt = localStorage.getItem('jwt');
   const fetchOptions = {

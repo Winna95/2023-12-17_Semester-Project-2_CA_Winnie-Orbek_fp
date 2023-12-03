@@ -23,6 +23,7 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="/src/productDetailPage/detailPage.js"></script>
   </head>
   <body>
     <header>
@@ -93,7 +94,7 @@
                 </div>
                 <div class="col">
                   <li class="nav-item">
-                    <a class="nav-link" href="">Sell</a>
+                    <button class="nav-link btn" id="sellBtn">Sell</button>
                   </li>
                 </div>
                 <div class="col">
@@ -108,7 +109,7 @@
           </div>
         </nav>
         <div class="line mx-auto"></div>
-        <div class="overlay mx-auto my-auto d-none">
+        <div class="overlay mx-auto my-auto d-none" id="overlay-sell-button">
           <span class="ms-5"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
