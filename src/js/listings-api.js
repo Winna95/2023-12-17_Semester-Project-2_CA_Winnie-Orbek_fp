@@ -155,8 +155,11 @@ export async function bidOnListing(listingId, biddingAmount) {
   let url = baseUrl + `/auction/listings/${listingId}/bids`;
   const jwt = localStorage.getItem('jwt');
   const fetchOptions = {
-    method: 'PUT',
-    headers: { Authorization: 'Bearer ' + jwt },
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + jwt,
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({ amount: biddingAmount }),
   };
 

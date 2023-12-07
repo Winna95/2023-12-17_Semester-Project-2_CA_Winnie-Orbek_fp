@@ -74,7 +74,7 @@ function renderListings(listings) {
             currentBid = sortedBids[0].amount
         }
         return ` <div
-            class="col-12 col-md-4 mx-3"
+            class="col-12 col-md-3 mx-3"
           >
           <div class="row d-flex mb-5 mt-3">
           <a href="" class="text-decoration-none link-dark">
@@ -154,5 +154,3 @@ activeListingsBtn.addEventListener("click", event => {
 endedListingsBtn.addEventListener("click", event => {
     renderListings(endedListings)
 });
-
-//

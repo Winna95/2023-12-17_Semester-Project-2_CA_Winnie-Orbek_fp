@@ -75,7 +75,7 @@ function insertListingAsHtml(listingToShow) {
         const amountOfLatestBid = sortedBids.length > 0 ? sortedBids[0].amount: 0
         return `<div class="col-12 col-md-4">
                 <div class="row mb-5 mt-3">
-                <a href="./src/productDetailPage/detailPage.html?postId=${listing.id}" class="text-decoration-none link-dark"> <div
+                <a href="./src/productDetailPage/detailPage.html?listingId=${listing.id}" class="text-decoration-none link-dark"> <div
             class="rounded-2 mb-5"
           >
           <div class="shadow pink-background pb-3">
