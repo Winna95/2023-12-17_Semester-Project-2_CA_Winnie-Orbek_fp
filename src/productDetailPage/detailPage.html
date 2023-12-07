@@ -1,5 +1,9 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/html"
+  xmlns="http://www.w3.org/1999/html"
+>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Product Detail Page</title>
@@ -79,37 +83,76 @@
       </div>
       <div class="container">
         <h1 class="onlineAuctionHeader text-center mt-3">Online Auction</h1>
+      </div>
 
-        <div class="line mx-auto pt-2"></div>
-        <nav class="navbar navbar-expand-lg py-0">
-          <div class="container-fluid d-flex justify-content-center">
-            <ul class="navbar-nav">
-              <div class="row">
-                <div class="col">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/index.html"
-                      >Listings</a
-                    >
-                  </li>
-                </div>
-                <div class="col">
-                  <li class="nav-item">
-                    <button class="nav-link btn" id="sellBtn">Sell</button>
-                  </li>
-                </div>
-                <div class="col">
-                  <li class="nav-item">
-                    <a class="nav-link" href="../aboutUsPage/aboutUs.html"
-                      >About</a
-                    >
-                  </li>
-                </div>
+      <div class="line mx-auto pt-2"></div>
+      <nav class="navbar navbar-expand-lg py-0">
+        <div class="container-fluid d-flex justify-content-center">
+          <ul class="navbar-nav">
+            <div class="row">
+              <div class="col">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/index.html"
+                    >Listings</a
+                  >
+                </li>
               </div>
-            </ul>
-          </div>
-        </nav>
-        <div class="line mx-auto"></div>
-        <div class="overlay mx-auto my-auto d-none" id="overlay-sell-button">
+              <div class="col">
+                <li class="nav-item">
+                  <button class="nav-link btn" id="sellBtn">Sell</button>
+                </li>
+              </div>
+              <div class="col">
+                <li class="nav-item">
+                  <a class="nav-link" href="../aboutUsPage/aboutUs.html"
+                    >About</a
+                  >
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </nav>
+      <div class="line mx-auto"></div>
+      <div class="overlay mx-auto my-auto d-none" id="overlay-sell-button">
+        <span class="ms-5"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            fill="currentColor"
+            class="bi bi-exclamation-circle-fill my-4"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+            /></svg
+        ></span>
+        <div class="ms-5">
+          <p>You need to be logged in to be able so sell something.</p>
+          <a href="../login/login.html"
+            ><p class="black-link">Log in here</p></a
+          >
+          <p>Don’t have an account yet?</p>
+          <a href="../register/register.html"
+            ><p class="black-link">Register here</p></a
+          >
+        </div>
+      </div>
+      <img
+        src="../../images/rupixen-com-Q59HmzK38eQ-unsplash.jpg"
+        alt="header image"
+        class="img-fluid header-img d-block mx-auto object-fit-cover mt-4"
+      />
+    </header>
+    <main>
+      <div class="container">
+        <div class="row" id="detailsAboutSellerPlaceholder"></div>
+        <div class="row" id="productDetailPlaceholder"></div>
+        <div
+          class="overlay mx-auto my-auto d-none"
+          id="overlaySeeBiddingHistoryNotLoggedIn"
+        >
           <span class="ms-5"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -124,28 +167,66 @@
               /></svg
           ></span>
           <div class="ms-5">
-            <p>You need to be logged in to be able so sell something.</p>
+            <p>Please log in to see bidding history.</p>
             <a href="../login/login.html"
-              ><p class="black-link">Log in here</p></a
+              ><p class="text-decoration-underline">Log In here</p></a
             >
-            <p>Don’t have an account yet?</p>
-            <a href="../register/register.html"
-              ><p class="black-link">Register here</p></a
+            <p>Don't have an account yet?</p>
+            <a href="../register/register.html">
+              <p class="text-decoration-underline">Register here</p></a
             >
           </div>
         </div>
-        <img
-          src="../../images/rupixen-com-Q59HmzK38eQ-unsplash.jpg"
-          alt="header image"
-          class="img-fluid header-img d-block mx-auto object-fit-cover mt-4"
+        <div
+          class="overlay-small mx-auto my-auto d-none"
+          id="overlaySeeBiddingHistoryLoggedIn"
+        ></div>
+      </div>
+      <div
+        class="overlay mx-auto my-auto d-none"
+        id="overlaySeeBiddingBtnNotLoggedIn"
+      >
+        <span class="ms-5"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            fill="currentColor"
+            class="bi bi-exclamation-circle-fill my-4"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+            /></svg
+        ></span>
+        <div class="ms-5">
+          <p>You need to be logged in to make a bid.</p>
+          <a href="../login/login.html"
+            ><p class="text-decoration-underline">Log In here</p></a
+          >
+          <p>Don't have an account yet?</p>
+          <a href="../register/register.html">
+            <p class="text-decoration-underline">Register here</p></a
+          >
+        </div>
+      </div>
+      <form
+        novalidate
+        class="overlayForm py-2 d-none needs-validation"
+        id="makeABidForm"
+      >
+        <h2 class="text-center mt-2">Place your bid</h2>
+        <div id="placeholderCurrentBid"></div>
+        <label class="mb-2">Your bid:</label>
+        <input
+          type="number"
+          placeholder="$"
+          id="bidInput"
+          class="form-control border-secondary mb-5 w-50"
         />
-      </div>
-    </header>
-    <main>
-      <div class="container">
-        <div class="row" id="detailsAboutSellerPlaceholder"></div>
-        <div class="row" id="productDetailPlaceholder"></div>
-      </div>
+        <button type="submit" class="btn btn-primary">Place bid</button>
+        <div class="invalid-feedback">Bid must larger than current bid.</div>
+      </form>
     </main>
     <footer class="bg-secondary mt-3">
       <div class="container py-3">

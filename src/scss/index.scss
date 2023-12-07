@@ -75,6 +75,25 @@ h3 {
   background-color: white;
   z-index: 2;
 }
+.overlay-small {
+  position: fixed;
+  display: block;
+  width: 30%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.overlayForm {
+  position: fixed;
+  display: block;
+  width: 40%;
+  height: 40%;
+  top: 50%;
+  left: 5%;
+  background-color: white;
+}
 .feed-avatar-img {
   height: 50px;
   width: 50px;
