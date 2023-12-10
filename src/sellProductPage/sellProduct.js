@@ -1,5 +1,5 @@
-import {createListing} from "/src/js/listings-api.js";
-import {addClickListenerForLogOut} from "/src/js/authentication.js";
+import {createListing} from "../js/listings-api.js";
+import {addClickListenerForLogOut} from "../js/authentication.js";
 addClickListenerForLogOut()
 
 const sellProductForm = document.querySelector("#sellProductForm");
@@ -34,7 +34,7 @@ sellProductForm.addEventListener("submit", event => {
             if(creationErrors.length === 0) {
                 // Display success message and redirect to the profile page
                 alert ("A new listing for your product was sucessfully created");
-                window.location.href = "/src/profilePage/profilePage.html"
+                window.location.href = "../profilePage/profilePage.html"
             } else {
                 // Display creation errors and hide the message after a delay
                 const concatenatedErrors = creationErrors.join(", ");

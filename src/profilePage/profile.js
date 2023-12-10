@@ -1,7 +1,7 @@
-import {getAllListingsByProfile, getProfileForName, updateEntryMedia} from "/src/js/profile-api.js";
-import {isAuthenticated, addClickListenerForLogOut} from "/src/js/authentication.js";
-import {deleteListing, getListingById} from "/src/js/listings-api.js";
-import {getSortedBids} from "/src/js/listingUtilities.js";
+import {getAllListingsByProfile, getProfileForName, updateEntryMedia} from "../js/profile-api.js";
+import {isAuthenticated, addClickListenerForLogOut} from "../js/authentication.js";
+import {deleteListing} from "../js/listings-api.js";
+import {getSortedBids} from "../js/listingUtilities.js";
 
 addClickListenerForLogOut()
 if(!isAuthenticated()) {
@@ -104,7 +104,7 @@ function renderListings(listings) {
             class="col-12 col-md-3"
           >
           <div class="row d-flex mb-5 mt-3">
-          <a href="/src/productDetailPage/detailPage.html?listingId=${listingByUser.id}" class="text-decoration-none link-dark">
+          <a href="../productDetailPage/detailPage.html?listingId=${listingByUser.id}" class="text-decoration-none link-dark">
             <div class="rounded-2 shadow pink-background">
               <img
                 src="${listingByUser.media}"

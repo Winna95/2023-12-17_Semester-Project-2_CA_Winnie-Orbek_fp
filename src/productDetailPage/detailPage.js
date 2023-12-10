@@ -3,9 +3,9 @@ import {
     isAuthenticated,
     overlayClickingOnSellForNotLoggedInUser,
     addClickListenerForLogOut
-} from "/src/js/authentication.js";
-import {bidOnListing, getListingById} from "/src/js/listings-api.js";
-import {getSortedBids} from "/src/js/listingUtilities.js";
+} from "../js/authentication.js";
+import {bidOnListing, getListingById} from "../js/listings-api.js";
+import {getSortedBids} from "../js/listingUtilities.js";
 
 headerForLoggedInOrLoggedOutUser()
 overlayClickingOnSellForNotLoggedInUser()

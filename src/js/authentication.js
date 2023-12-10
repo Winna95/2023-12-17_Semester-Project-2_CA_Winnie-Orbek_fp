@@ -39,7 +39,7 @@ export function overlayClickingOnSellForNotLoggedInUser() {
     });
   } else {
     sellBtn.addEventListener('click', () => {
-      window.location.href = '/src/sellProductPage/sellProduct.html';
+      window.location.href = '../sellProductPage/sellProduct.html';
     });
   }
 }
@@ -47,7 +47,7 @@ export function overlayClickingOnSellForNotLoggedInUser() {
 export function logOut() {
   localStorage.removeItem('jwt');
   localStorage.removeItem('name');
-  window.location.href = '/src/login/login.html';
+  window.location.href = '../login/login.html';
 }
 
 /**
