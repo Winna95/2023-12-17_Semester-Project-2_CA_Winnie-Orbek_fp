@@ -44,6 +44,12 @@ export function overlayClickingOnSellForNotLoggedInUser() {
   }
 }
 
+export function logOut() {
+  localStorage.removeItem('jwt');
+  localStorage.removeItem('name');
+  window.location.href = '/src/login/login.html';
+}
+
 /**
  * Adds a click event listener to the logout button. When clicked, it removes
  * the user's authentication information from local storage and redirects to
@@ -53,10 +59,6 @@ export function addClickListenerForLogOut() {
   const logoutBtn = document.querySelector('#logoutBtn');
   //to handle when a user is not logged in
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('jwt');
-      localStorage.removeItem('name');
-      window.location.href = '/src/login/login.html';
-    });
+    logoutBtn.addEventListener('click', () => logOut());
   }
 }
