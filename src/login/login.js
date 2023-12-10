@@ -1,4 +1,4 @@
-import { logInUser } from "../js/authentication-api.js"
+import { logInUser } from "/src/js/authentication-api.js"
 
 const forms = document.querySelectorAll('.needs-validation')
 
@@ -22,7 +22,7 @@ Array.from(forms).forEach(form => {
             logInUser(emailInput, passwordInput).then(sucessfulLogin => {
                 if(sucessfulLogin === true) {
                     // Redirect to the profile page on successful login
-                    window.location = "../profilePage/profilePage.html"
+                    window.location = "/src/profilePage/profilePage.html"
                 } else {
                     // Display error message and reset form validation
                     form.classList.remove('was-validated');
