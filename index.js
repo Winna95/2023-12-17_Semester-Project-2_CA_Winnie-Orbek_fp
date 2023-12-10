@@ -1,4 +1,4 @@
-import {headerForLoggedInOrLoggedOutUser, overlayClickingOnSellForNotLoggedInUser} from "./src/js/authentication.js";
+import {headerForLoggedInOrLoggedOutUser, overlayClickingOnSellForNotLoggedInUser, addClickListenerForLogOut} from "./src/js/authentication.js";
 import {getAllListings} from "./src/js/listings-api.js";
 import {getSortedBids} from "./src/js/listingUtilities.js";
 
@@ -6,6 +6,8 @@ import {getSortedBids} from "./src/js/listingUtilities.js";
 headerForLoggedInOrLoggedOutUser()
 
 overlayClickingOnSellForNotLoggedInUser()
+
+addClickListenerForLogOut()
 
 let allListingsFromServer;
 
@@ -54,19 +56,19 @@ function fetchListingFromServer(active, tag) {
 }
 
 fetchListingFromServer(true, null)
-function createImgForListingMedia(media) {
-    if(media && media.length > 0) {
-        return `<img
-                src="${media[0]}"
+function createImgForListingMedia(medias) {
+    if(medias && medias.length > 0) {
+            return `<img
+                src="${medias[0]}"
                 alt="listing image"
-                class="img-fluid rounded-2 object-fit-cover"
+                class="img-fluid rounded-2 object-fit-cover feed-img"
               />`
-    } else {
-        return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+        }
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-image feed-img" viewBox="0 0 16 16">
   <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
   <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
 </svg>`;
-    }
 }
 
 function insertListingAsHtml(listingToShow) {
@@ -82,7 +84,7 @@ function insertListingAsHtml(listingToShow) {
             <div class="text-center">
             ${createImgForListingMedia(listing.media)}
             </div>
-            <h4 class="fw-bolder text-center mt-2">${listing.title}</h4>
+            <h4 class="fw-bolder text-center mt-2" style="word-break: break-all ;">${listing.title}</h4>
             <p class="ms-2">
                Current bid: ${amountOfLatestBid}
             </p>

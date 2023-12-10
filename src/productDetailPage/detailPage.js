@@ -1,13 +1,15 @@
 import {
     headerForLoggedInOrLoggedOutUser,
     isAuthenticated,
-    overlayClickingOnSellForNotLoggedInUser
+    overlayClickingOnSellForNotLoggedInUser,
+    addClickListenerForLogOut
 } from "../js/authentication.js";
 import {bidOnListing, getListingById} from "../js/listings-api.js";
 import {getSortedBids} from "../js/listingUtilities.js";
 
 headerForLoggedInOrLoggedOutUser()
 overlayClickingOnSellForNotLoggedInUser()
+addClickListenerForLogOut()
 
 const listingId = new URLSearchParams(document.location.search).get("listingId");
 
@@ -22,7 +24,7 @@ getListingById(listingId, true, true).then(listing => {
               <img
                 src="${listing.seller.avatar}"
                 alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-cover feed-avatar-img"
+                class="img-fluid rounded-circle feed-avatar-img mw-50 mh-50 col-2 ms-5 object-fit-cover"
               />
               <div class="ms-3 mt-4">
                 <b>${listing.seller.name}</b>
@@ -38,23 +40,23 @@ function fetchAndRenderListing() {
         const amountOfLatestBid = sortedBids.length > 0 ? sortedBids[0].amount : 0
         productDetailPlaceholder.innerHTML = `
     <div
-            class="d-flex mt-5"
+            class="d-flex mt-5 row"
           >
-          <div class="col-6">
+          <div class="col-12 col-md-6">
                 <h2 class="mb-2">${listing.title}</h2>
                 <p class="mb-2">${listing.description}</p>
                 <p class="mb-0">Deadline: ${new Date(listing.endsAt).toLocaleDateString()}</p>
                 <P class="mb-0">Current bid: ${amountOfLatestBid}</P>
-                <button class="btn ms-0 ps-0 text-decoration-underline mt-0" id="seeBiddingHistoryBtn">See bidding history<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                <button class="btn ms-0 ps-0 text-decoration-underline mt-0 link-dark" id="seeBiddingHistoryBtn">See bidding history<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
 </svg></button>
 <div id="biddingHistoryPlaceholder" class="mt-0">
 </div>
 <div>
-<button class="btn btn-primary ms-0 ps-2 mt-5" id="makeABidBtn">Make a bid</button>
+<button class="btn btn-primary ms-0 ps-2 my-5" id="makeABidBtn">Make a bid</button>
 </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
                 <img
                 src="${listing.media}"
                 alt="listing picture"
@@ -69,6 +71,7 @@ function fetchAndRenderListing() {
 
 fetchAndRenderListing();
 
+let makeBidDialogVisible = false;
 function overlayClickingOnSeeBiddingHistory(bidCount) {
     const  seeBiddingHistoryBtn= document.querySelector('#seeBiddingHistoryBtn');
     if (bidCount < 1) {
@@ -96,7 +99,9 @@ function overlayClickingOnSeeBiddingHistory(bidCount) {
                 biddingHistoryPlaceholder.innerHTML += getSortedBids(listing).reverse().map(bid => {
                     return `<p>${new Date (bid.created).toLocaleDateString()}: ${bid.amount}$</p>`
                 }).join(" ");
-                biddingHistoryPlaceholder.innerHTML += `<button class="btn btn-primary" id="makeABidBtn">Make a bid</button>`
+                if(!makeBidDialogVisible) {
+                    biddingHistoryPlaceholder.innerHTML += `<button class="btn btn-primary mb-5" id="makeABidBtn">Make a bid</button>`
+                }
                 addOnClickListenerToMakeABidBtns(listing)
             })
         })
@@ -117,6 +122,8 @@ function addOnClickListenerToMakeABidBtns(listing) {
          } else {
              const makeABidForm = document.querySelector("#makeABidForm");
              makeABidForm.classList.remove("d-none");
+             makeBidDialogVisible = true;
+             btns.forEach(btn => btn.classList.add("d-none"));
             const placeholderCurrentBid = document.querySelector("#placeholderCurrentBid");
             const sortedBids = getSortedBids(listing);
             const currentBid = sortedBids.length > 0? sortedBids[0].amount:0;
@@ -133,7 +140,10 @@ function addOnClickListenerToMakeABidBtns(listing) {
                             makeABidForm.classList.add("d-none");
                             fetchAndRenderListing();
                         } else {
-                            alert("Unable to place your bid, please check your credits and try again later.")
+                            alert(
+                                "Unable to place your bid, please check your credits," +
+                                " ensure you are not bidding on your own listing and try again later."
+                            );
                         }
                     })
 

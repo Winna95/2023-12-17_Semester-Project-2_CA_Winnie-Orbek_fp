@@ -44,11 +44,12 @@
                 </div>
                 <div class="col">
                   <li class="nav-item">
-                    <a
-                      class="nav-link text-white nav-link-imbue"
-                      href="../login/login.html"
-                      >LogOut</a
+                    <button
+                      class="btn nav-link text-white nav-link-imbue"
+                      id="logoutBtn"
                     >
+                      LogOut
+                    </button>
                   </li>
                 </div>
               </div>
@@ -112,13 +113,14 @@
           </button>
         </div>
         <div>
-          <button class="btn text-decoration-underline fw-bold">
+          <button
+            class="btn text-decoration-underline fw-bold"
+            id="myListingsBtn"
+          >
             <h2>My Listings</h2>
           </button>
-          |
-          <button class="btn fw-bold"><h2>My Bids</h2></button>
         </div>
-        <div>
+        <div id="listingsSection">
           <button
             class="btn text-decoration-underline fw-bold"
             id="allListings"
@@ -131,16 +133,8 @@
           </button>
           |
           <button class="btn fw-bold" id="endedListings">Ended listings</button>
+          <div id="placeholderProfileListings" class="row"></div>
         </div>
-        <div id="placeholderProfileListings" class="row"></div>
-        <div class="d-none">
-          <button class="btn text-decoration-underline fw-bold">All</button>
-          |
-          <button class="btn fw-bold">Active bids</button>
-          |
-          <button class="btn fw-bold">Ended bids</button>
-        </div>
-        <div class="row" id="productsPlaceholder"></div>
       </div>
     </main>
     <footer class="bg-secondary mt-3">

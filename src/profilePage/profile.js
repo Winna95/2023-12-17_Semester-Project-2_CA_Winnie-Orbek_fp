@@ -1,8 +1,9 @@
 import {getAllListingsByProfile, getProfileForName, updateEntryMedia} from "../js/profile-api.js";
-import {isAuthenticated} from "../js/authentication.js";
+import {isAuthenticated, addClickListenerForLogOut} from "../js/authentication.js";
 import {deleteListing, getListingById} from "../js/listings-api.js";
 import {getSortedBids} from "../js/listingUtilities.js";
 
+addClickListenerForLogOut()
 if(!isAuthenticated()) {
     window.location = "/"
 }
@@ -14,20 +15,20 @@ function loadAndRenderProfileInformation() {
     getProfileForName(nameOfUser, false).then(profile => {
         const placeholderUserDetails = document.querySelector("#detailsAboutUserPlaceholder");
         placeholderUserDetails.innerHTML = `
-        <div class="d-flex justify-content-start my-5">
-         <div class="col-3">
+        <div class="d-flex justify-content-start my-5 col-10">
+         <div>
              <div class="row">
                 <img
                 src="${profile.avatar}"
                 alt="profile picture"
-                class="img-fluid rounded-circle rounded w-100 h-100 feed-avatar-img object-fit-cover"
+                class="img-fluid rounded-circle rounded feed-avatar-img object-fit-cover w-100 h-100 mb-5"
                 />
              </div>
              <div class="row">
-                <button class="btn" id="editProfilePicture">Edit profile picture</button>
+                <button class="btn text-decoration-underline" id="editProfilePicture">Edit image</button>
              </div>
          </div>
-         <div class="align-self-center ms-5 col-8">
+         <div class="align-self-center ms-5">
             <h2 class="fw-bold mb-0">${profile.name}</h2>
             <p class="my-0">Credits: ${profile.credits}</p>
             <p class="my-0">Wins: ${profile.wins.length}</p>
@@ -74,15 +75,15 @@ function renderListings(listings) {
             currentBid = sortedBids[0].amount
         }
         return ` <div
-            class="col-12 col-md-3 mx-3"
+            class="col-12 col-md-3"
           >
           <div class="row d-flex mb-5 mt-3">
-          <a href="" class="text-decoration-none link-dark">
+          <a href="../productDetailPage/detailPage.html?listingId=${listingByUser.id}" class="text-decoration-none link-dark">
             <div class="rounded-2 shadow pink-background">
               <img
                 src="${listingByUser.media}"
                 alt="Listing Image"
-                class="img-fluid mx-auto rounded-2"
+                class="img-fluid mx-auto rounded-2 feed-img object-fit-cover"
               />
               <h5 class="fw-bold text-center mt-4">${listingByUser.title}</h5>
               <p class="ps-4">
@@ -92,8 +93,7 @@ function renderListings(listings) {
               Deadline: ${new Date (listingByUser.endsAt).toLocaleDateString()}
               </p>
             <div class="d-flex justify-content-end">
-            <button id="editBtn" class="mt-2 me-2 btn px-3 fw-bold" data-postId="${listingByUser.id}">Edit</button>
-            <button id="deleteBtn" class="mt-2 btn px-3 fw-bold" data-postId="${listingByUser.id}">Delete</button>
+            <button id="deleteBtn" class="mt-2 btn px-3 fw-bold" data-listingId="${listingByUser.id}">Delete</button>
             <div id="deletePostPlaceholder" class="d-none alert alert-danger">Could not delete post, please try again later</div>
             </div>
             </div>
@@ -107,8 +107,9 @@ function renderListings(listings) {
     const deleteBtns = document.querySelectorAll("#deleteBtn");
     deleteBtns.forEach(btn => {
         btn.addEventListener("click", event => {
-            const postId = btn.getAttribute("data-postId");
-            deleteListing(postId).then(successfulDeletedListing => {
+            event.preventDefault();
+            const listingId = btn.getAttribute("data-listingId");
+            deleteListing(listingId).then(successfulDeletedListing => {
                 if (successfulDeletedListing) {
                     loadAndRenderListings();
                 } else {
@@ -121,9 +122,14 @@ function renderListings(listings) {
     })
 }
 
+
 let allListings;
 let endedListings;
 let activeListings;
+
+let allMyBids;
+let myEndedBids;
+let myActiveBids;
 
 function loadAndRenderListings() {
     getAllListingsByProfile(nameOfUser).then(listingsByUser => {
@@ -135,6 +141,7 @@ function loadAndRenderListings() {
         activeListings = listingsByUser.filter(listing => {
             return new Date(listing.endsAt) >= new Date()
         })
+        console.log(listingsByUser);
         renderListings(allListings);
     })
 }
@@ -146,11 +153,20 @@ const activeListingsBtn = document.querySelector("#activeListings");
 const endedListingsBtn = document.querySelector("#endedListings");
 
 allListingsBtn.addEventListener("click", event => {
-    renderListings(allListings)
+    renderListings(allListings);
+    allListingsBtn.classList.add("text-decoration-underline");
+    activeListingsBtn.classList.remove("text-decoration-underline");
+    endedListingsBtn.classList.remove("text-decoration-underline");
 });
 activeListingsBtn.addEventListener("click", event => {
-    renderListings(activeListings)
+    renderListings(activeListings);
+    allListingsBtn.classList.remove("text-decoration-underline");
+    activeListingsBtn.classList.add("text-decoration-underline");
+    endedListingsBtn.classList.remove("text-decoration-underline");
 });
 endedListingsBtn.addEventListener("click", event => {
-    renderListings(endedListings)
+    renderListings(endedListings);
+    allListingsBtn.classList.remove("text-decoration-underline");
+    activeListingsBtn.classList.remove("text-decoration-underline");
+    endedListingsBtn.classList.add("text-decoration-underline");
 });

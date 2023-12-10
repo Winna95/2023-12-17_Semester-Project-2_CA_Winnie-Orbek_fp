@@ -1,4 +1,6 @@
 import {createListing} from "../js/listings-api.js";
+import {addClickListenerForLogOut} from "../js/authentication.js";
+addClickListenerForLogOut()
 
 const sellProductForm = document.querySelector("#sellProductForm");
 
@@ -20,7 +22,7 @@ sellProductForm.addEventListener("submit", event => {
         ).then(creationErrors => {
             if(creationErrors.length === 0) {
                 alert ("A new listing for your product was sucessfully created");
-                window.location.href = "../../index.html"
+                window.location.href = "../profilePage/profilePage.html"
             } else {
                 const concatenatedErrors = creationErrors.join(", ");
                 const creationErrorPlaceholder = document.querySelector("#creationErrorPlaceholder");

@@ -69,11 +69,12 @@
                 </div>
                 <div class="col">
                   <li class="nav-item">
-                    <a
-                      class="nav-link text-white nav-link-imbue"
-                      href="../login/login.html"
-                      >LogOut</a
+                    <button
+                      class="btn nav-link text-white nav-link-imbue"
+                      id="logoutBtn"
                     >
+                      LogOut
+                    </button>
                   </li>
                 </div>
               </div>
@@ -130,12 +131,10 @@
         ></span>
         <div class="ms-5">
           <p>You need to be logged in to be able so sell something.</p>
-          <a href="../login/login.html"
-            ><p class="black-link">Log in here</p></a
-          >
+          <a href="../login/login.html" class="link-dark"><p>Log in here</p></a>
           <p>Don’t have an account yet?</p>
-          <a href="../register/register.html"
-            ><p class="black-link">Register here</p></a
+          <a href="../register/register.html" class="link-dark"
+            ><p>Register here</p></a
           >
         </div>
       </div>
@@ -149,6 +148,24 @@
       <div class="container">
         <div class="row" id="detailsAboutSellerPlaceholder"></div>
         <div class="row" id="productDetailPlaceholder"></div>
+        <form
+          novalidate
+          class="py-5 d-none needs-validation"
+          id="makeABidForm"
+          style="padding-bottom: 10%"
+        >
+          <h2 class="text-center mt-2">Place your bid</h2>
+          <div id="placeholderCurrentBid"></div>
+          <label class="mb-2">Your bid:</label>
+          <input
+            type="number"
+            placeholder="$"
+            id="bidInput"
+            class="form-control border-secondary mb-5 w-50"
+          />
+          <button type="submit" class="btn btn-primary">Place bid</button>
+          <div class="invalid-feedback">Bid must larger than current bid.</div>
+        </form>
         <div
           class="overlay mx-auto my-auto d-none"
           id="overlaySeeBiddingHistoryNotLoggedIn"
@@ -168,11 +185,11 @@
           ></span>
           <div class="ms-5">
             <p>Please log in to see bidding history.</p>
-            <a href="../login/login.html"
+            <a href="../login/login.html" class="link-dark"
               ><p class="text-decoration-underline">Log In here</p></a
             >
             <p>Don't have an account yet?</p>
-            <a href="../register/register.html">
+            <a href="../register/register.html" class="link-dark">
               <p class="text-decoration-underline">Register here</p></a
             >
           </div>
@@ -201,32 +218,15 @@
         ></span>
         <div class="ms-5">
           <p>You need to be logged in to make a bid.</p>
-          <a href="../login/login.html"
+          <a href="../login/login.html" class="link-dark"
             ><p class="text-decoration-underline">Log In here</p></a
           >
           <p>Don't have an account yet?</p>
-          <a href="../register/register.html">
+          <a href="../register/register.html" class="link-dark">
             <p class="text-decoration-underline">Register here</p></a
           >
         </div>
       </div>
-      <form
-        novalidate
-        class="overlayForm py-2 d-none needs-validation"
-        id="makeABidForm"
-      >
-        <h2 class="text-center mt-2">Place your bid</h2>
-        <div id="placeholderCurrentBid"></div>
-        <label class="mb-2">Your bid:</label>
-        <input
-          type="number"
-          placeholder="$"
-          id="bidInput"
-          class="form-control border-secondary mb-5 w-50"
-        />
-        <button type="submit" class="btn btn-primary">Place bid</button>
-        <div class="invalid-feedback">Bid must larger than current bid.</div>
-      </form>
     </main>
     <footer class="bg-secondary mt-3">
       <div class="container py-3">
