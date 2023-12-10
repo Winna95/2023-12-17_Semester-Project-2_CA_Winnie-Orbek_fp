@@ -35,6 +35,6 @@ describe('Authentication', () => {
     expect(global.localStorage.removeItem).toHaveBeenCalledWith('jwt');
     expect(global.localStorage.removeItem).toHaveBeenCalledWith('name');
     expect(global.localStorage.removeItem).toHaveBeenCalledTimes(2);
-    expect(global.window.location.href).toEqual('/src/login/login.html');
+    expect(global.window.location.href).toEqual('../login/login.html');
   });
 });

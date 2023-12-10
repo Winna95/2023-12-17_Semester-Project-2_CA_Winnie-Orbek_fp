@@ -1,4 +1,4 @@
-import { logInUser, registerNewUser } from "/src/js/authentication-api.js";
+import { logInUser, registerNewUser } from "../js/authentication-api.js";
 
 
 const registerForm = document.querySelector("#registerForm");
@@ -27,7 +27,7 @@ registerForm.addEventListener("submit", event => {
                 logInUser(emailInput, passwordInput).then(successfulLogin => {
                     if(successfulLogin) {
                         // Redirect to the profile page on successful login
-                        window.location = "/src/profilePage/profilePage.html"
+                        window.location = "../profilePage/profilePage.html"
                     } else {
                         // Redirect to the home page on login failure
                         window.location = "/"
