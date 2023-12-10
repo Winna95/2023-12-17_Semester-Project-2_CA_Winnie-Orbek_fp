@@ -1,5 +1,15 @@
 const baseUrl = 'https://api.noroff.dev/api/v1';
 
+/**
+ * Registers a new user by making a POST request to the server.
+ *
+ * @param {string} name - The name of the user.
+ * @param {string} email - The email address of the user.
+ * @param {string} password - The password for the new user.
+ * @param {string} avatarImgUrl - The URL of the user's avatar image.
+ * @returns {Promise<string[]>} An array of error messages if registration fails; otherwise, an empty array.
+ * @throws {Error} Throws an error if there is an issue with the fetch request.
+ */
 export async function registerNewUser(name, email, password, avatarImgUrl) {
   if (!name) {
     throw new Error('Name is required to register a new user');
@@ -37,6 +47,14 @@ export async function registerNewUser(name, email, password, avatarImgUrl) {
   }
 }
 
+/**
+ * Logs in a user by making a POST request to the server.
+ *
+ * @param {string} email - The email address of the user.
+ * @param {string} password - The password for the user.
+ * @returns {Promise<boolean>} True if login is successful, false otherwise.
+ * @throws {Error} Throws an error if there is an issue with the fetch request or if the response indicates an error.
+ */
 export async function logInUser(email, password) {
   if (!email) {
     throw new Error('Email is required to register a new user');
