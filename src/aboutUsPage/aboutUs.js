@@ -1,4 +1,5 @@
-import {headerForLoggedInOrLoggedOutUser, overlayClickingOnSellForNotLoggedInUser} from "../js/authentication.js";
+import {headerForLoggedInOrLoggedOutUser, overlayClickingOnSellForNotLoggedInUser, addClickListenerForLogOut} from "../js/authentication.js";
 
 headerForLoggedInOrLoggedOutUser()
 overlayClickingOnSellForNotLoggedInUser()
+addClickListenerForLogOut()

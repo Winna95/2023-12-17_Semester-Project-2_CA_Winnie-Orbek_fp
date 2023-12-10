@@ -132,6 +132,7 @@ export async function updateListing(id, title, description, tags, pictureUrl) {
 
 export async function deleteListing(id) {
   const url = baseUrl + `/auction/listings/${id}`;
+  console.log(url);
   const jwt = localStorage.getItem('jwt');
 
   const fetchOptions = {
@@ -140,11 +141,11 @@ export async function deleteListing(id) {
       Authorization: 'Bearer ' + jwt,
     },
   };
-
   const response = await fetch(url, fetchOptions);
-
+  if (response.ok) {
+    return true;
+  }
   const data = await response.json();
-
   if (data.errors && data.errors.length > 0) {
     return false;
   }
@@ -168,6 +169,7 @@ export async function bidOnListing(listingId, biddingAmount) {
   const data = await response.json();
 
   if (data.errors && data.errors.length > 0) {
+    console.error(data.errors.map(err => err.message));
     return false;
   }
   return true;

@@ -28,7 +28,6 @@ registerForm.addEventListener("submit", event => {
                         window.location = "/"
                     }
                 }).catch(error => {
-
                     window.location = "/"
                     console.error(error);
                 });

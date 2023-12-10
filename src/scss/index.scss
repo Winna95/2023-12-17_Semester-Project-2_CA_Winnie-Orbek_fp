@@ -94,9 +94,13 @@ h3 {
   left: 5%;
   background-color: white;
 }
+.feed-img {
+  height: 200px;
+  width: 100%;
+}
 .feed-avatar-img {
-  height: 50px;
-  width: 50px;
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .pink-background {
@@ -106,6 +110,7 @@ h3 {
 @media (min-width: 576px) {
   .onlineAuctionHeader {
     font-size: 50px;
+
     .imbueText {
       font-size: 30px;
     }
@@ -118,10 +123,26 @@ h3 {
     .imbueText {
       font-size: 35px;
     }
+    .feed-avatar-img {
+      max-height: 110px;
+      max-width: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  @media (min-width: 768px) {
+    .feed-avatar-img {
+      max-height: 120px;
+      max-width: 120px;
+    }
   }
   @media (min-width: 992px) {
     .onlineAuctionHeader {
       font-size: 60px;
+    }
+    .feed-avatar-img {
+      max-height: 200px;
+      max-width: 200px;
     }
   }
 
