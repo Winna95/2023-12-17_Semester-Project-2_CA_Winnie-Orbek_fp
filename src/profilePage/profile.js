@@ -11,9 +11,15 @@ if(!isAuthenticated()) {
 
 const nameOfUser = localStorage.getItem("name");
 
+/**
+ * Loads and renders profile information for a user.
+ */
 function loadAndRenderProfileInformation() {
+    // Get the profile information for the specified user
     getProfileForName(nameOfUser, false).then(profile => {
+        // Select the HTML element where user details will be displayed
         const placeholderUserDetails = document.querySelector("#detailsAboutUserPlaceholder");
+        // Update the HTML content dynamically with information about the user
         placeholderUserDetails.innerHTML = `
         <div class="d-flex justify-content-start my-5 col-10">
          <div>
@@ -36,9 +42,12 @@ function loadAndRenderProfileInformation() {
          </div>
        </div>`
         ;
+        // Select the "Edit Image" button and add a click event listener
         const editProfilePictureBtn = document.querySelector("#editProfilePicture");
         editProfilePictureBtn.addEventListener("click", event => {
+            // Select the HTML element for editing profile picture
             const editProfilePictureDiv = document.querySelector("#editProfilePictureDiv")
+            // Remove the "d-none" class to make the editing div visible
             editProfilePictureDiv.classList.remove("d-none");
         })
 
@@ -49,15 +58,25 @@ loadAndRenderProfileInformation();
 
 
 const changeProfilePictureBtn = document.querySelector("#changeProfilePicture");
+/**
+ * Event listener function for handling the click on the changeProfilePictureBtn.
+ *
+ * @param {Event} event - The click event.
+ */
 changeProfilePictureBtn.addEventListener("click", event => {
+    // Select the input field for editing the profile image
     const inputFieldEditProfileImage = document.querySelector("#profilePicture");
-    console.log(inputFieldEditProfileImage.value);
+    // Update the user's profile picture using the entered URL
     updateEntryMedia(nameOfUser, inputFieldEditProfileImage.value).then(sucessfulUpdate => {
         if(sucessfulUpdate) {
+            // If the update is successful, reload and render the updated profile information
             loadAndRenderProfileInformation()
+            // Select the HTML element for editing profile picture
             const editProfilePictureDiv = document.querySelector("#editProfilePictureDiv");
+            // Add the "d-none" class to hide the editing div
             editProfilePictureDiv.classList.add("d-none");
         } else {
+            // If the update is not successful, show an alert
             alert("Could not update your profile picture")
         }
     })
@@ -65,15 +84,22 @@ changeProfilePictureBtn.addEventListener("click", event => {
 })
 
 
-
+/**
+ * Renders the given list of listings in the profile section.
+ *
+ * @param {Array} listings - An array of listing objects.
+ */
 function renderListings(listings) {
+    // Select the HTML element where profile listings will be displayed
     const placeholderProfileListings = document.querySelector("#placeholderProfileListings");
+    // Generate HTML for each listing and create an array of HTML strings
     const listOfHtmlListings = listings.map(listingByUser => {
         const sortedBids = getSortedBids(listingByUser);
         let currentBid = 0;
         if(sortedBids.length > 0) {
             currentBid = sortedBids[0].amount
         }
+        // Return the HTML string for each listing
         return ` <div
             class="col-12 col-md-3"
           >
@@ -102,13 +128,15 @@ function renderListings(listings) {
           </div>
 `;
     });
+    // Update the HTML content with the generated listings
     placeholderProfileListings.innerHTML = listOfHtmlListings.join(" ");
-
+// Add event listeners to the delete buttons for each listing
     const deleteBtns = document.querySelectorAll("#deleteBtn");
     deleteBtns.forEach(btn => {
         btn.addEventListener("click", event => {
             event.preventDefault();
             const listingId = btn.getAttribute("data-listingId");
+            // Delete the listing and update the view accordingly
             deleteListing(listingId).then(successfulDeletedListing => {
                 if (successfulDeletedListing) {
                     loadAndRenderListings();
@@ -127,13 +155,15 @@ let allListings;
 let endedListings;
 let activeListings;
 
-let allMyBids;
-let myEndedBids;
-let myActiveBids;
 
+/**
+ * Fetches all listings associated with the user's profile and renders them in the view.
+ * Categorizes listings into active and ended based on their end date.
+ */
 function loadAndRenderListings() {
+    // Fetch all listings associated with the user's profile
     getAllListingsByProfile(nameOfUser).then(listingsByUser => {
-
+        // Store all listings, ended listings, and active listings
         allListings = listingsByUser;
         endedListings = listingsByUser.filter(listing => {
             return new Date(listing.endsAt) < new Date()
@@ -141,7 +171,7 @@ function loadAndRenderListings() {
         activeListings = listingsByUser.filter(listing => {
             return new Date(listing.endsAt) >= new Date()
         })
-        console.log(listingsByUser);
+        // Render all listings in the view
         renderListings(allListings);
     })
 }
@@ -152,20 +182,45 @@ const allListingsBtn = document.querySelector("#allListings");
 const activeListingsBtn = document.querySelector("#activeListings");
 const endedListingsBtn = document.querySelector("#endedListings");
 
+/**
+ * Event listener function for the button that displays all listings.
+ * Renders all listings in the view, updates button styles to indicate the active category.
+ *
+ * @param {Event} event - The click event triggering the function.
+ */
 allListingsBtn.addEventListener("click", event => {
+    // Render all listings in the view
     renderListings(allListings);
+    // Update button styles to indicate the active category
     allListingsBtn.classList.add("text-decoration-underline");
     activeListingsBtn.classList.remove("text-decoration-underline");
     endedListingsBtn.classList.remove("text-decoration-underline");
 });
+/**
+ * Event listener function for the button that displays active listings.
+ * Renders active listings in the view, updates button styles to indicate the active category.
+ *
+ * @param {Event} event - The click event triggering the function.
+ */
 activeListingsBtn.addEventListener("click", event => {
+    // Render active listings in the view
     renderListings(activeListings);
+    // Update button styles to indicate the active category
     allListingsBtn.classList.remove("text-decoration-underline");
     activeListingsBtn.classList.add("text-decoration-underline");
     endedListingsBtn.classList.remove("text-decoration-underline");
 });
+
+/**
+ * Event listener function for the button that displays ended listings.
+ * Renders ended listings in the view, updates button styles to indicate the active category.
+ *
+ * @param {Event} event - The click event triggering the function.
+ */
 endedListingsBtn.addEventListener("click", event => {
+    // Render ended listings in the view
     renderListings(endedListings);
+    // Update button styles to indicate the active category
     allListingsBtn.classList.remove("text-decoration-underline");
     activeListingsBtn.classList.remove("text-decoration-underline");
     endedListingsBtn.classList.add("text-decoration-underline");
