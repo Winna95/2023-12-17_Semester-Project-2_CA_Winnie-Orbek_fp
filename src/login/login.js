@@ -1,4 +1,7 @@
 import { logInUser } from "../js/authentication-api.js"
+import {overlayClickingOnSellForNotLoggedInUser} from "../js/authentication.js";
+
+overlayClickingOnSellForNotLoggedInUser(false)
 
 const forms = document.querySelectorAll('.needs-validation')
 
