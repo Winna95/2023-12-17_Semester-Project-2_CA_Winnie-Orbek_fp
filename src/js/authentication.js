@@ -27,7 +27,7 @@ export function headerForLoggedInOrLoggedOutUser() {
  * it displays an overlay indicating that the user needs to log in.
  * If the user is authenticated, it redirects to the sell product page.
  */
-export function overlayClickingOnSellForNotLoggedInUser() {
+export function overlayClickingOnSellForNotLoggedInUser(pathIsRoot) {
   const sellBtn = document.querySelector('#sellBtn');
   if (!isAuthenticated()) {
     sellBtn.addEventListener('click', () => {
@@ -39,15 +39,19 @@ export function overlayClickingOnSellForNotLoggedInUser() {
     });
   } else {
     sellBtn.addEventListener('click', () => {
-      window.location.href = '../sellProductPage/sellProduct.html';
+      window.location.href = pathIsRoot
+        ? './src/sellProductPage/sellProduct.html'
+        : '../sellProductPage/sellProduct.html';
     });
   }
 }
 
-export function logOut() {
+export function logOut(pathIsRoot) {
   localStorage.removeItem('jwt');
   localStorage.removeItem('name');
-  window.location.href = '../login/login.html';
+  window.location.href = pathIsRoot
+    ? './src/login/login.html'
+    : '../login/login.html';
 }
 
 /**
@@ -55,10 +59,10 @@ export function logOut() {
  * the user's authentication information from local storage and redirects to
  * the login page.
  */
-export function addClickListenerForLogOut() {
+export function addClickListenerForLogOut(pathIsRoot) {
   const logoutBtn = document.querySelector('#logoutBtn');
   //to handle when a user is not logged in
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => logOut());
+    logoutBtn.addEventListener('click', () => logOut(pathIsRoot));
   }
 }

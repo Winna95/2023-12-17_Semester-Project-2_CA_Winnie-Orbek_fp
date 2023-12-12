@@ -31,7 +31,7 @@ describe('Authentication', () => {
         href: null,
       },
     };
-    logOut();
+    logOut(false);
     expect(global.localStorage.removeItem).toHaveBeenCalledWith('jwt');
     expect(global.localStorage.removeItem).toHaveBeenCalledWith('name');
     expect(global.localStorage.removeItem).toHaveBeenCalledTimes(2);

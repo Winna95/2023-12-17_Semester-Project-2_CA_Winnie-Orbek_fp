@@ -29,12 +29,12 @@ registerForm.addEventListener("submit", event => {
                         // Redirect to the profile page on successful login
                         window.location = "../profilePage/profilePage.html"
                     } else {
-                        // Redirect to the home page on login failure
-                        window.location = "/"
+                        // Redirect to the login page on login failure
+                        window.location = "../login/login.html"
                     }
                 }).catch(error => {
-                    // Redirect to the home page and log error on login failure
-                    window.location = "/"
+                    // Redirect to the login page and log error on login failure
+                    window.location = "../login/login.html"
                     console.error(error);
                 });
             } else {

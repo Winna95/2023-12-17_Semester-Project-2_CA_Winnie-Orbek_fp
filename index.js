@@ -5,9 +5,9 @@ import {getSortedBids} from "./src/js/listingUtilities.js";
 
 headerForLoggedInOrLoggedOutUser()
 
-overlayClickingOnSellForNotLoggedInUser()
+overlayClickingOnSellForNotLoggedInUser(true)
 
-addClickListenerForLogOut()
+addClickListenerForLogOut(true)
 
 let allListingsFromServer;
 
