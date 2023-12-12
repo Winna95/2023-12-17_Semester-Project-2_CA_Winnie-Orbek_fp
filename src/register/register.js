@@ -1,4 +1,7 @@
 import { logInUser, registerNewUser } from "../js/authentication-api.js";
+import {overlayClickingOnSellForNotLoggedInUser} from "../js/authentication.js";
+
+overlayClickingOnSellForNotLoggedInUser(false)
 
 
 const registerForm = document.querySelector("#registerForm");
