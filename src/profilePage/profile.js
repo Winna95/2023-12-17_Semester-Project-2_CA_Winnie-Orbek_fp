@@ -3,9 +3,9 @@ import {isAuthenticated, addClickListenerForLogOut} from "../js/authentication.j
 import {deleteListing} from "../js/listings-api.js";
 import {getSortedBids} from "../js/listingUtilities.js";
 
-addClickListenerForLogOut()
+addClickListenerForLogOut(false)
 if(!isAuthenticated()) {
-    window.location = "/"
+    window.location = "../login/login.html"
 }
 
 

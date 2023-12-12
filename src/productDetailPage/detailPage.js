@@ -8,8 +8,8 @@ import {bidOnListing, getListingById} from "../js/listings-api.js";
 import {getSortedBids} from "../js/listingUtilities.js";
 
 headerForLoggedInOrLoggedOutUser()
-overlayClickingOnSellForNotLoggedInUser()
-addClickListenerForLogOut()
+overlayClickingOnSellForNotLoggedInUser(false)
+addClickListenerForLogOut(false)
 
 const listingId = new URLSearchParams(document.location.search).get("listingId");
 

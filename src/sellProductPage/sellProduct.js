@@ -1,6 +1,6 @@
 import {createListing} from "../js/listings-api.js";
 import {addClickListenerForLogOut} from "../js/authentication.js";
-addClickListenerForLogOut()
+addClickListenerForLogOut(false)
 
 const sellProductForm = document.querySelector("#sellProductForm");
 
